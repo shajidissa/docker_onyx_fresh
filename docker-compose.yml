@@ -1,0 +1,11 @@
+version: '1'
+
+services:
+  onyx:
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - /share:/share
+    network_mode: host
+
