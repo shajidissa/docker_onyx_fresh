@@ -4,7 +4,7 @@
 ############################################################
 
 # Set the base image to Ubuntu
-FROM java:7
+FROM java:8
 
 MAINTAINER Saj Issa <saj.issa@gmail.com>
 
