@@ -3,6 +3,8 @@ version: '2'
 services:
   onyx:
     restart: always
+     build:
+          context: ./onyx
     ports:
       - "80:80"
     volumes:
