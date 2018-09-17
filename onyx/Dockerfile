@@ -13,7 +13,7 @@ MAINTAINER Saj Issa <saj.issa@gmail.com>
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install curl wget git vim unzip mysql-server ntp cron supervisor ssmtp maven && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install curl wget git vim unzip mysql-server ntp cron supervisor ssmtp maven unzip && \
     apt-get clean
 
 RUN mkdir /usr/local/tomcat
@@ -21,6 +21,7 @@ RUN wget http://www-us.apache.org/dist/tomcat/tomcat-8/v8.5.34/bin/apache-tomcat
 RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-8.5.34/* /usr/local/tomcat/
 RUN wget https://github.com/obiba/onyx-demo/archive/master.zip -O /tmp/master.zip
+RUN cd /tmp && unzip -uo /tmp/master.zip -d /tmp/onyx
 
 EXPOSE 8080
 CMD /usr/local/tomcat/bin/catalina.sh run
