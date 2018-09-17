@@ -13,7 +13,7 @@ MAINTAINER Saj Issa <saj.issa@gmail.com>
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-8-jdk curl wget git vim unzip mysql-server ntp cron supervisor ssmtp maven && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install openjdk-8-jdk openjdk-8-jre openjdk-8-jdk-headless curl wget git vim unzip mysql-server ntp cron supervisor ssmtp maven && \
     apt-get clean
 
 RUN mkdir /usr/local/tomcat
