@@ -22,6 +22,8 @@ RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-8.5.34/* /usr/local/tomcat/
 RUN wget https://github.com/obiba/onyx-demo/archive/master.zip -O /tmp/master.zip
 RUN cd /tmp && unzip -uo /tmp/master.zip -d /tmp/onyx
+RUN cd /tmp/onyx/onyx-demo-master && mvn package
+RUN cp /tmp/onyx/onyx-demo-master/target/onyx-demo.war /usr/local/tomcat/webapps
 
 EXPOSE 8080
 CMD /usr/local/tomcat/bin/catalina.sh run
