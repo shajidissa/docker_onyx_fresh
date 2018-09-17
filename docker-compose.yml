@@ -1,7 +1,7 @@
 version: '2'
 
 services:
-  redcap:
+  onyx:
     restart: always
     build:
       context: ./onyx
