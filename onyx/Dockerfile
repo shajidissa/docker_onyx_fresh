@@ -24,8 +24,9 @@ RUN wget https://github.com/obiba/onyx-demo/archive/master.zip -O /tmp/master.zi
 RUN cd /tmp && unzip -uo /tmp/master.zip -d /tmp/onyx
 RUN cd /tmp/onyx/onyx-demo-master && mvn package
 RUN cp /tmp/onyx/onyx-demo-master/target/onyx-demo.war /usr/local/tomcat/webapps
+RUN sed -i.bak 's/8080/80/g'  /usr/local/tomcat/conf/server.xml
 
-EXPOSE 8080
+EXPOSE 80
 CMD /usr/local/tomcat/bin/catalina.sh run
 
 # Setup supervisord

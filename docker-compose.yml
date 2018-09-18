@@ -6,7 +6,7 @@ services:
     build:
       context: ./onyx
     ports:
-      - "80:8080"
+      - "80:80"
     volumes:
       - /share:/share
     network_mode: host
