@@ -22,6 +22,16 @@ RUN cd /tmp && tar xvfz tomcat.tar.gz
 RUN cp -Rv /tmp/apache-tomcat-8.5.34/* /usr/local/tomcat/
 RUN wget https://github.com/obiba/onyx-demo/archive/master.zip -O /tmp/master.zip
 RUN cd /tmp && unzip -uo /tmp/master.zip -d /tmp/onyx
+
+RUN echo '# MySQL' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.driver=com.mysql.jdbc.Driver' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.url=jdbc:mysql://localhost:3306/onyx' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.username=root' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.password=root' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.dialect=org.hibernate.dialect.MySQL5InnoDBDialect' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.validationQuery=SELECT 1;' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+RUN echo 'org.obiba.onyx.datasource.testOnBorrow=true' >> /tmp/onyx/onyx-demo-master/src/main/webapp/WEB-INF/config/onyx-config.properties
+
 RUN cd /tmp/onyx/onyx-demo-master && mvn package
 RUN cp /tmp/onyx/onyx-demo-master/target/onyx-demo.war /usr/local/tomcat/webapps
 RUN sed -i.bak 's/8080/80/g'  /usr/local/tomcat/conf/server.xml
